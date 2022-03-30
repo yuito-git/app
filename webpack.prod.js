@@ -1,3 +1,4 @@
+//公開用のモード
 const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const ImageminMozjpeg = require("imagemin-mozjpeg");
