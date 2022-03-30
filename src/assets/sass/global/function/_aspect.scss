@@ -1,0 +1,46 @@
+@charset 'UTF-8';
+@use "sass:math";
+@use "../setting" as *;
+
+//  Aspect Ratio(画面比率を求める)
+//--------------------------------------------
+
+//gcd(Greatest common divisor)・・・2 つ以上の自然数の公約数（= 共通の約数）の中で最大のもの
+//約数・・ある整数を割り切ることのできる整数
+//【最大公約数を求める|ユークリッドの互除法】
+@function gcd($x, $y) {
+  @if ($y==0) {
+    //もし、yの値が0ならxの値を返す
+    @return $x;
+  } @else {
+    //それ以外の時
+    //yの値が0になるまで計算
+    @return gcd($y, $x % $y);
+  }
+}
+
+//【gcd関数を用いてアスペクト比を求める】
+@function aspect($width, $height) {
+  //$divisor = 最大公約数
+  $divisor: gcd($width, $height);
+  //$x = 横幅の比率（width / 最大公約数）
+  $x: calc($width / $divisor);
+  //$y = 縦幅の比率 (height / 最大公約数)
+  $y: calc($height / $divisor);
+  @return #{$x} / #{$y};
+}
+
+//【使用例】
+//$width = 1200, $height = 500
+//gcd(500,1200 %(余りを求める) 500 = 200)
+//gcd(500,200)で、繰り返し最大公約数を求める処理を行う
+//gcd(200,500 % 200 = 100)
+//gcd(200,100)で繰り返し最大公約数を求める
+//gcd(100 , 200 % 100 = 0 )
+//最大公約数は100
+
+//#aspect関数
+//$divisor = 100
+//$width = 1200 / 100 = 12
+//$height = 500 / 100 = 5
+// 「12 / 5」 を返す

@@ -1,0 +1,12 @@
+@charset 'UTF-8';
+@use "../setting" as *;
+
+//  IE11
+//--------------------------------------------
+@mixin ie11() {
+  //IE11のみ適用
+  //-ms-high-contrast: noneのみだとハイコントラストモードがオンの時効かないからactiveも指定
+  @media (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
