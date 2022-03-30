@@ -8,9 +8,9 @@
     "defaults"
   ],
   "scripts": {
-    "creanup": "rimraf ./public",
-    "dev": "npm run creanup && webpack --watch --config ./webpack.dev.js",
-    "prod": "npm run creanup && webpack  --config ./webpack.prod.js"
+    "cleanup": "rimraf ./public",
+    "dev": "npm run cleanup && webpack --watch --config ./webpack.dev.js",
+    "prod": "npm run cleanup && webpack  --config ./webpack.prod.js"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
