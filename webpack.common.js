@@ -90,6 +90,7 @@ module.exports = {
   output: {
     //第一引数に現在のディレクトリまでの絶対パスを補完してくれる特別な変数、第二引数に出力先のファイル名を指定
     path: path.resolve(__dirname, dir.dist),
+    //[name]には、entry{}内で使用されているプロパティ名が入る。今回の場合、mainが入る
     filename: `./${dir.assets}/js/[name].bundle.js`,
     // assetModuleFilename: `${dir.assets}/img/[name][ext]`,
   },
