@@ -1,3 +1,4 @@
+//Node.jsに標準で入っている絶対パスを取得したり、ファイル名取得したりできるモジュール
 const path = require("path");
 const globule = require("globule");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -87,6 +88,7 @@ module.exports = {
     ...entryPoints,
   },
   output: {
+    //第一引数に現在のディレクトリまでの絶対パスを補完してくれる特別な変数、第二引数に出力先のファイル名を指定
     path: path.resolve(__dirname, dir.dist),
     filename: `./${dir.assets}/js/[name].bundle.js`,
     // assetModuleFilename: `${dir.assets}/img/[name][ext]`,
@@ -230,7 +232,7 @@ module.exports = {
       ],
     }),
     new ESLintPlugin({
-      extensions: [ '.ts', '.js' ],
+      extensions: ['.ts', '.js'],
       exclude: 'node_modules'
     }),
 
