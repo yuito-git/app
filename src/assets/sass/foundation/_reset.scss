@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../global"as *;
+@use "../global" as *;
 
 /*
   # Global
@@ -513,7 +513,6 @@ template,
  * Prettier ignore
  */
 @media (prefers-reduced-motion: reduce) {
-
   //OSの「視差効果」設定が有効の時
   //【NG例】
   //*,

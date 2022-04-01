@@ -1,6 +1,7 @@
 //Node.jsに標準で入っている絶対パスを取得したり、ファイル名取得したりできるモジュール
 const path = require("path");
 const globule = require("globule");
+//CSSをバンドルせずにCSSファイルとして出力して、<link>タグで読み込ませる
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
