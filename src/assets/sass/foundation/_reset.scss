@@ -203,7 +203,7 @@ body {
   // font-feature-settings: "palt";
   font-feature-settings: "pkna";
 
-  @include ie11() {
+  @include ie() {
     &::before {
       content: "このブラウザーは古いため、一部表示に乱れが生じる可能性がありますので、ご了承ください。できるだけ最新版のWindowsでご利用いただくか、別のブラウザーをお使いください！";
       display: block;

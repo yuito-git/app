@@ -1,0 +1,25 @@
+@charset 'UTF-8';
+@use "../setting"as *;
+
+@use "../function"as *;
+@use "./ie"as *;
+@use "sass:math";
+@use "sass:map";
+
+@mixin hover() {
+  &:focus {
+    @content;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+
+  @include ie() {
+    &:hover {
+      @content;
+    }
+  }
+}

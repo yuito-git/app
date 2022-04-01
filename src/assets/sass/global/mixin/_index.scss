@@ -6,6 +6,7 @@
 //mixin、関数、変数を他のファイルでも使えるようにする機能(まだ理解曖昧です)
 @forward "media-query";
 @forward "flex-font";
-@forward "ie11";
+@forward "ie";
 @forward "aspect-ratio";
 @forward "layer";
+@forward "hover";

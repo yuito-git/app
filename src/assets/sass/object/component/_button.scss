@@ -13,4 +13,8 @@
   text-decoration: none;
   cursor: pointer;
   appearance: none;
+
+  @include hover() {
+    background-color: #fff;
+  }
 }
