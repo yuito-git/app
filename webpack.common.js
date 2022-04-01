@@ -134,6 +134,8 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
+              //CSS内のurl()を取り込まない
+              //background-image:url(hoge/hoge.png);とかurlを指定したときにうまくいくようにする
               url: false,
               sourceMap: true,
             },
