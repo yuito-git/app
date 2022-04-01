@@ -12,6 +12,8 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
+
+    //ホバー可能かつマウスなどの正確性のあるポインターデバイスを使用している場合
     &:hover {
       @content;
     }
