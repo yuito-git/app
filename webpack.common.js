@@ -138,6 +138,8 @@ module.exports = {
               sourceMap: true,
             },
           },
+          //sassまたはscssファイルの場合sass-loaderでSassをCSSに変換してからpostcss-loaderを実行
+          //ベンダープレフィックスとかscssファイルにいらんから
           "postcss-loader",
         ],
       },
