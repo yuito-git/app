@@ -142,8 +142,15 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/,
+        //ロードされる順番を指定。preは最優先で実行
+        //sassファイルまたは、scssファイルがあるときは最優先に実行する
         enforce: "pre",
-        use: ["sass-loader", "import-glob-loader"],
+        use: [
+          {
+            //sass-loader・・scssをcssに変換
+            loader: "sass-loader"
+          },
+        ]
       },
       {
         test: /\.(pug|html)$/,
