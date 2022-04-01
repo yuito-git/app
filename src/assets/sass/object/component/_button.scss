@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../../global" as *;
+@use "../../global"as *;
 
 /*
   Button
@@ -13,8 +13,4 @@
   text-decoration: none;
   cursor: pointer;
   appearance: none;
-
-  @include hover() {
-    background-color: #fff;
-  }
 }
