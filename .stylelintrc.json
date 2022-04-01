@@ -17,6 +17,7 @@
     "string-quotes": "double",
     "shorthand-property-no-redundant-values": true,
     "value-keyword-case": "lower",
-    "property-case": "lower"
+    "property-case": "lower",
+    "scss/operator-no-unspaced": false
   }
 }
