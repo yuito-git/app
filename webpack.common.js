@@ -180,8 +180,10 @@ module.exports = {
   },
 
   plugins: [
+    //拡張機能の設定
     new BrowserSyncPlugin(browserOptions),
     new MiniCssExtractPlugin({
+      //出力されるCSSファイルのパスと名前を指定
       filename: `./${dir.assets}/css/common.css`,
     }),
     new CopyPlugin({
