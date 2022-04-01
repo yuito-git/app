@@ -149,7 +149,11 @@ module.exports = {
         use: [
           {
             //sass-loader・・scssをcssに変換
-            loader: "sass-loader"
+            loader: "sass-loader",
+            options: {
+              //Dart Sassを読み込むことを明示的にする
+              implementation: require('sass'),
+            }
           },
         ]
       },

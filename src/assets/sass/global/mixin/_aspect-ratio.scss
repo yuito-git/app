@@ -1,8 +1,8 @@
 @charset 'UTF-8';
-@use "../setting"as *;
+@use "../setting" as *;
 
-@use "../function"as *;
-@use "./ie"as *;
+@use "../function" as *;
+@use "./ie" as *;
 @use "sass:math";
 @use "sass:map";
 
@@ -23,8 +23,8 @@
     padding-top: math.percentage(calc($height / $width));
   }
 
-  >img,
-  >iframe {
+  > img,
+  > iframe {
     width: 100%;
     height: 100%;
 
@@ -48,7 +48,7 @@
     }
   }
 
-  >img {
+  > img {
     //img
     object-fit: cover;
     //IE対策
