@@ -5,9 +5,10 @@ module.exports = (api) => {
   return {
     presets: [
       [
+        //ES6の構文を古いブラウザに対応するために古い書き方にトランスパイル
         "@babel/preset-env",
         {
-          useBuiltIns: "usage",
+          useBuiltIns: "usage",//必要なポリフィルのみ読み込む
           corejs: 3, // バージョンを指定
         },
       ],
