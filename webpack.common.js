@@ -260,7 +260,8 @@ module.exports = {
     }),
     new ESLintPlugin({
       extensions: ['.ts', '.js'],
-      exclude: 'node_modules'
+      exclude: 'node_modules',
+      fix: true
     }),
 
     new StyleLintPlugin({
