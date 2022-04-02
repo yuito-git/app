@@ -11,10 +11,16 @@ const lintEs = {
     'es6': true,
     'es2022': true,
   },
-  globals: {},
+  globals: {
+    "jQuery": "readonly",//読み取り専用
+    "$": "readonly",//読み取り専用
+    "dataLayer": false
+  },
   parserOptions: {
+    "parser": "@babel/eslint-parser",
+    "requireConfigFile": false,
     'sourceType': 'module',
-    'ecmaVersion': 2015
+    'ecmaVersion': 2015,
   },
   "extends": [
     "eslint:recommended",
@@ -24,7 +30,14 @@ const lintEs = {
     "prettier"
   ],
   rules: {
-    "prettier/prettier":"error",
+    "semi": [
+      "error",
+      "always",
+      {
+        "omitLastInOneLineBlock": true
+      }
+    ],
+    "prettier/prettier": "error",
     'no-extra-semi': 'warn',
     'no-undef': 'warn',
     'space-before-blocks': [
@@ -59,7 +72,7 @@ const lintTs = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
   ],
   rules: {
-    "prettier/prettier":"error",
+    "prettier/prettier": "error",
     'no-console': 'warn',
     'no-extra-semi': 'warn',
     'no-undef': 'warn',
@@ -71,9 +84,9 @@ const lintTs = {
         'functions': 'always'
       }
     ],
-  '@typescript-eslint/no-unsafe-call': 'warn',
-  '@typescript-eslint/no-unsafe-member-access': 'warn',
-  '@typescript-eslint/no-unsafe-return' : 'warn'
+    '@typescript-eslint/no-unsafe-call': 'warn',
+    '@typescript-eslint/no-unsafe-member-access': 'warn',
+    '@typescript-eslint/no-unsafe-return': 'warn'
   },
 };
 
