@@ -56,10 +56,10 @@ if (settings.pug) {
       .replace(".pug", ".html");
     templates.push(
       new HtmlWebpackPlugin({
-        filename: `${fileName}`,
-        template: document,
+        filename: `${fileName}`,//出力ファイル名
+        template: document,//元ファイル
         inject: false,
-        minify: false,
+        minify: false,//htmlの圧縮しない
       })
     );
   });
