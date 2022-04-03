@@ -270,7 +270,7 @@ module.exports = {
       fix: true, // 自動修正可能なものは修正
       // failOnError: true, //エラー検出時にビルド中断
     }),
-    ...templates,
+    ...templates,//配列の形ではなくて上記のStyleLintPluginと同じ形で書く。スプレッド構文
   ],
   resolve: {
     extensions: [".ts", ".js", ".json"],
