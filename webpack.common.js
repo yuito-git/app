@@ -57,7 +57,7 @@ if (settings.pug) {
     templates.push(
       new HtmlWebpackPlugin({
         filename: `${fileName}`,//出力ファイル名
-        template: document,//元ファイル
+        template: document,//コンパイル対象ファイル
         inject: false,//バンドルしたjsファイルを読み込むscriptタグを自動出力しない。html・pugファイル側でscriptタグを記述する。
         minify: false,//htmlの圧縮しない
       })
