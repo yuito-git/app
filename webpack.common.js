@@ -168,6 +168,7 @@ module.exports = {
           {
             loader: "html-loader",
             options: {
+              //画像のバンドルをしない
               sources: false,
             },
           },
