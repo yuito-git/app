@@ -1,5 +1,6 @@
 //Node.jsに標準で入っている絶対パスを取得したり、ファイル名取得したりできるモジュール
 const path = require("path");
+//複数のpugファイルを自動でコンパイルするためのモジュール
 const globule = require("globule");
 //CSSをJSファイルにバンドルせずにCSSファイルとして出力して、<link>タグで読み込ませる
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
