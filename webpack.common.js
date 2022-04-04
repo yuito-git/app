@@ -5,6 +5,7 @@ const globule = require("globule");
 //CSSをJSファイルにバンドルせずにCSSファイルとして出力して、<link>タグで読み込ませる
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+//個々のファイルやディレクトリ全体をコピーするたのプラグイン
 const CopyPlugin = require("copy-webpack-plugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
 
@@ -200,9 +201,9 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: `${dir.src}/${dir.assets}/img`,
-          to: `${dir.assets}/img`,
-          noErrorOnMissing: true,
+          from: `${dir.src}/${dir.assets}/img`,//コピー元のディレクトリ
+          to: `${dir.assets}/img`,//コピー先のディレクトリ(output.pathが基準)
+          noErrorOnMissing: true,//ディレクトリがなくてもエラーを出さない
         },
         {
           from: `${dir.src}/${dir.assets}/font`,
@@ -255,7 +256,7 @@ module.exports = {
         },
         {
           from: "style.css",
-          context: `${dir.src}/`,
+          context: `${dir.src}/`,//ここで指定したディレクトリ以下のstyle.cssをコピー。それ以外はコピーしない
           noErrorOnMissing: true,
         },
       ],
