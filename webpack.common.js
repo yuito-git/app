@@ -71,16 +71,16 @@ if (settings.pug) {
 // BrowserSync の設定
 // ==============================================
 const browserOptions = {
-  host: "localhost",
-  port: 3000,
-  online: true,
-  open: "external",
+  host: "localhost",//ホスト名
+  port: 3000,//ポート番号
+  online: true,//オンラインモード
+  open: "external",//ブラウザを自動で開く
 };
 
 if (settings.php) {
-  browserOptions.proxy = "http://localhost:8080/";
+  browserOptions.proxy = "http://localhost:8080/";//phpの起動時に使用するポート番号
 } else {
-  browserOptions.server = { baseDir: [`${dir.dist}`] };
+  browserOptions.server = { baseDir: [`${dir.dist}`] };//ブラウザで表示するデフォルトディレクトリ
 }
 
 // ==============================================
