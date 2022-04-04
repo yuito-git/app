@@ -11,7 +11,7 @@ module.exports = merge(common, {
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
       pngquant: {
-        quality: "95-100",
+        quality: "95-100",//圧縮率
       },
       gifsicle: {
         interlaced: false,
@@ -35,8 +35,8 @@ module.exports = merge(common, {
           },
         },
       ],
-      detailedLogs: true,
-      overrideExtension: false, // 拡張子の変換を行わない
+      detailedLogs: true,//変換後のバイト数や変換に失敗したファイル数などを表示
+      overrideExtension: false, // 拡張子の変換を行わない。image.png.webpというファイル名のように元の拡張子を残す。
     }),
   ],
 });
