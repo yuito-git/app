@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @use "sass:math";
-@use "../global"as *;
+@use "../global" as *;
 //====================================
 //  Grid
 //====================================
@@ -52,8 +52,7 @@
     align-items: flex-end;
   }
 
-  @each $device,
-  $breakpoint in $breakpoints {
+  @each $device, $breakpoint in $breakpoints {
     @media screen and (min-width: $breakpoint) {
       &[data-align~="#{$device}:start"] {
         justify-content: flex-start;
@@ -117,8 +116,7 @@
       justify-content: flex-end;
     }
 
-    @each $device,
-    $breakpoint in $breakpoints {
+    @each $device, $breakpoint in $breakpoints {
       @media screen and (min-width: $breakpoint) {
         &[data-align~="#{$device}:start"] {
           align-items: flex-start;
@@ -152,14 +150,13 @@
   &[data-gutter] {
     width: auto;
 
-    &>#{$this}__item {
+    & > #{$this}__item {
       border: solid transparent;
       background-clip: padding-box;
     }
   }
 
-  @each $device,
-  $breakpoint in $breakpoints {
+  @each $device, $breakpoint in $breakpoints {
     @media screen and (min-width: $breakpoint) {
       $ratio: 2.5;
 
@@ -171,12 +168,11 @@
         $ratio: 1;
       }
 
-      @each $size,
-      $val in $gutters {
+      @each $size, $val in $gutters {
         &[data-gutter="#{$size}"] {
           margin: -(calc($val * $ratio / 2));
 
-          &>#{$this}__item {
+          & > #{$this}__item {
             border-width: calc($val * $ratio / 2);
           }
         }
@@ -184,7 +180,7 @@
         &[data-gutter~="#{$device}:#{$size}"] {
           margin: -(calc($val * $ratio / 2));
 
-          &>#{$this}__item {
+          & > #{$this}__item {
             border-width: calc($val * $ratio / 2);
           }
         }
@@ -193,7 +189,7 @@
       &__item {
         @for $i from 1 through $column {
           &[data-cols~="#{$device}:#{$i}"] {
-            width: percentage(math.div($i, $column));
+            width: math.percentage(math.div($i, $column));
           }
         }
 
