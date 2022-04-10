@@ -1,18 +1,18 @@
 @charset "UTF-8";
 @use "sass:math";
-@use "../global" as *;
+@use "../global"as *;
 //====================================
 //  Grid
 //====================================
 
 .l-grid {
-  $this: &;
+  $this: &; //入れ子内でl-gridを参照するため
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; //折返し許可
   margin: 0;
   padding: 0;
 
-  // Direction
+  // Direction・・並び順指定
   // ----------------------------
   &[data-dir="normal"] {
     flex-direction: row;
@@ -22,9 +22,10 @@
     flex-direction: row-reverse;
   }
 
-  // Alignment
+  // Alignment・・配置指定
   // ----------------------------
   &[data-align~="start"] {
+    //属性値が空白区切りの単語に一致する要素
     justify-content: flex-start;
   }
 
@@ -52,8 +53,11 @@
     align-items: flex-end;
   }
 
-  @each $device, $breakpoint in $breakpoints {
+  @each $device,
+  $breakpoint in $breakpoints {
     @media screen and (min-width: $breakpoint) {
+
+      //ブレイクポイントごとに対応する
       &[data-align~="#{$device}:start"] {
         justify-content: flex-start;
       }
@@ -90,7 +94,7 @@
     flex-direction: column;
     margin: 0;
 
-    // Alignment
+    // Alignment・・アイテムの配置指定
     // ----------------------------
     &[data-align~="start"] {
       align-items: flex-start;
@@ -116,7 +120,8 @@
       justify-content: flex-end;
     }
 
-    @each $device, $breakpoint in $breakpoints {
+    @each $device,
+    $breakpoint in $breakpoints {
       @media screen and (min-width: $breakpoint) {
         &[data-align~="#{$device}:start"] {
           align-items: flex-start;
@@ -150,15 +155,18 @@
   &[data-gutter] {
     width: auto;
 
-    & > #{$this}__item {
+    &>#{$this}__item {
       border: solid transparent;
-      background-clip: padding-box;
+      background-clip: padding-box; //borderで余白をつけるから背景色が描画される範囲をpadding領域までにしておく
     }
   }
 
-  @each $device, $breakpoint in $breakpoints {
+  @each $device,
+  $breakpoint in $breakpoints {
+
+    //ここは案件によって余白を変える
     @media screen and (min-width: $breakpoint) {
-      $ratio: 2.5;
+      $ratio: 2.5; //比率
 
       @if $breakpoint>=768 {
         $ratio: 1.5;
@@ -168,25 +176,29 @@
         $ratio: 1;
       }
 
-      @each $size, $val in $gutters {
+      @each $size,
+      $val in $gutters {
         &[data-gutter="#{$size}"] {
-          margin: -(calc($val * $ratio / 2));
+          margin: -(calc($val * $ratio / 2)); //余計なborderをネガティブマージンで消す
 
-          & > #{$this}__item {
-            border-width: calc($val * $ratio / 2);
+          &>#{$this}__item {
+            border-width: calc($val * $ratio / 2); //四隅に余白用のborderを指定
           }
         }
 
         &[data-gutter~="#{$device}:#{$size}"] {
           margin: -(calc($val * $ratio / 2));
 
-          & > #{$this}__item {
+          &>#{$this}__item {
             border-width: calc($val * $ratio / 2);
           }
         }
       }
 
       &__item {
+
+        //$iが1からグリッドカラム数12までくりかえす
+        //グリッドアイテムにグリッド何個分の幅にするか指定
         @for $i from 1 through $column {
           &[data-cols~="#{$device}:#{$i}"] {
             width: math.percentage(math.div($i, $column));
