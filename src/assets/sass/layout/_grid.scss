@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @use "sass:math";
-@use "../global"as *;
+@use "../global" as *;
 //====================================
 //  Grid
 //====================================
@@ -53,10 +53,8 @@
     align-items: flex-end;
   }
 
-  @each $device,
-  $breakpoint in $breakpoints {
+  @each $device, $breakpoint in $breakpoints {
     @media screen and (min-width: $breakpoint) {
-
       //ブレイクポイントごとに対応する
       &[data-align~="#{$device}:start"] {
         justify-content: flex-start;
@@ -120,8 +118,7 @@
       justify-content: flex-end;
     }
 
-    @each $device,
-    $breakpoint in $breakpoints {
+    @each $device, $breakpoint in $breakpoints {
       @media screen and (min-width: $breakpoint) {
         &[data-align~="#{$device}:start"] {
           align-items: flex-start;
@@ -155,15 +152,13 @@
   &[data-gutter] {
     width: auto;
 
-    &>#{$this}__item {
+    & > #{$this}__item {
       border: solid transparent;
       background-clip: padding-box; //borderで余白をつけるから背景色が描画される範囲をpadding領域までにしておく
     }
   }
 
-  @each $device,
-  $breakpoint in $breakpoints {
-
+  @each $device, $breakpoint in $breakpoints {
     //ここは案件によって余白を変える
     @media screen and (min-width: $breakpoint) {
       $ratio: 2.5; //比率
@@ -176,12 +171,11 @@
         $ratio: 1;
       }
 
-      @each $size,
-      $val in $gutters {
+      @each $size, $val in $gutters {
         &[data-gutter="#{$size}"] {
           margin: -(calc($val * $ratio / 2)); //余計なborderをネガティブマージンで消す
 
-          &>#{$this}__item {
+          & > #{$this}__item {
             border-width: calc($val * $ratio / 2); //四隅に余白用のborderを指定
           }
         }
@@ -189,14 +183,13 @@
         &[data-gutter~="#{$device}:#{$size}"] {
           margin: -(calc($val * $ratio / 2));
 
-          &>#{$this}__item {
+          & > #{$this}__item {
             border-width: calc($val * $ratio / 2);
           }
         }
       }
 
       &__item {
-
         //$iが1からグリッドカラム数12までくりかえす
         //グリッドアイテムにグリッド何個分の幅にするか指定
         @for $i from 1 through $column {
