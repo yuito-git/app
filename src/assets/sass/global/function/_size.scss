@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../setting" as *;
+@use "../setting"as *;
 
 //  Size
 //--------------------------------------------
@@ -12,12 +12,12 @@
 
 // px -> vwに変換
 @function pxToVw($size, $window-size: $sp-comp-width) {
-  @return math.div($size, $window-size * 100) * 1vw;
+  @return math.div($size, $window-size) * 100vw;
 }
 
 //px -> vh に変換
 @function pxToVh($size, $window-size: $sp-comp-width) {
-  @return math.div($size, $window-size * 100) * 1vh;
+  @return math.div($size, $window-size) * 100vh;
 }
 
 //*=======================================================
