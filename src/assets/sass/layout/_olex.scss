@@ -2,10 +2,10 @@
 @use "sass:math";
 @use "../global" as *;
 //====================================
-//  Grid
+//  Olex Grid
 //====================================
 
-.l-grid {
+.l-olex {
   $this: &; //入れ子内でl-gridを参照するため
   display: flex;
   flex-wrap: wrap; //折返し許可
