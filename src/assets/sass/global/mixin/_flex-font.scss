@@ -1,11 +1,10 @@
 @charset 'UTF-8';
-@use "../setting" as *;
+@use "../setting"as *;
 
-@use "../function" as *;
-@use "./ie" as *;
+@use "../function"as *;
+@use "./ie"as *;
 
 @mixin ff($minFontSize, $maxFontSize, $minWidth: $sp-comp-width, $maxWidth: $pc-comp-width) {
-  min-height: 0.0001vw; // Safariバグ対策
   font-size: flexClamp($minFontSize, $maxFontSize, $minWidth, $maxWidth);
 
   @include ie() {
