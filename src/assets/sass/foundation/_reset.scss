@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../global" as *;
+@use "../global"as *;
 
 /*
   # Global
@@ -14,6 +14,8 @@
 ::after {
   //全要素、擬似要素のボックスの計算方法は親要素から継承する
   box-sizing: inherit;
+  //文字のスタイルを親要素から継承する
+  font-style: inherit;
 }
 
 /**
@@ -140,6 +142,7 @@ html {
   -webkit-text-size-adjust: 100%;
   //ページ内リンクで移動するときの動きがスムーズ
   scroll-behavior: smooth;
+  font-style: normal;
 
   &.is-useJs {
     //JS使用環境
@@ -513,6 +516,7 @@ template,
  * Prettier ignore
  */
 @media (prefers-reduced-motion: reduce) {
+
   //OSの「視差効果」設定が有効の時
   //【NG例】
   //*,
