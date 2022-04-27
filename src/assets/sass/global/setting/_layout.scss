@@ -40,10 +40,15 @@ $spaces: (
 $column: 12;
 
 // Gutter Size
+
 $gutters: (
-  small: 1vw,
-  normal: 2vw,
-  large: 3vw,
+  xxsmall: 8px,
+  xsmall: 16px,
+  small: 24px,
+  medium: 30px,
+  large: 40px,
+  xlarge: 48px,
+  xxlarge: 64px,
 ) !default;
 
 //* =======================================================

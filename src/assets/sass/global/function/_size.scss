@@ -10,6 +10,11 @@
   @return math.div($size, $base-font-size) * 1rem;
 }
 
+// px -> emに変換
+@function pxToEm($size, $base-font-size: 16px) {
+  @return math.div($size, $base-font-size) * 1em;
+}
+
 // px -> vwに変換
 @function pxToVw($size, $window-size: $sp-comp-width) {
   @return math.div($size, $window-size) * 100vw;

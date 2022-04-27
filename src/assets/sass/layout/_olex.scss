@@ -159,32 +159,30 @@
   }
 
   @each $device, $breakpoint in $breakpoints {
-    //ここは案件によって余白を変える
     @media screen and (min-width: $breakpoint) {
-      $ratio: 2.5; //比率
-
-      @if $breakpoint>=768 {
-        $ratio: 1.5;
-      }
-
-      @if $breakpoint>=992 {
-        $ratio: 1;
-      }
-
       @each $size, $val in $gutters {
-        &[data-gutter="#{$size}"] {
-          margin: -(calc($val * $ratio / 2)); //余計なborderをネガティブマージンで消す
-
-          & > #{$this}__item {
-            border-width: calc($val * $ratio / 2); //四隅に余白用のborderを指定
-          }
-        }
-
         &[data-gutter~="#{$device}:#{$size}"] {
-          margin: -(calc($val * $ratio / 2));
+          @if $breakpoint <=767 {
+            margin: max(
+              math.div(pxToVw(-$val), 2),
+              math.div(pxToRem(-$val), 2)
+            ); //余計なborderをネガティブマージンで消す。2で割るのは、隣り合う要素の余白1つ分を消すため
+          }
+
+          @if $breakpoint>=768 {
+            margin: math.div(pxToRem(-$val), 2);
+            margin: max(math.div(pxToVw(-$val, $pc-comp-width), 2), math.div(pxToRem(-$val), 2));
+          }
 
           & > #{$this}__item {
-            border-width: calc($val * $ratio / 2);
+            @if $breakpoint <=767 {
+              border-width: min(math.div(pxToVw($val), 2), math.div(pxToRem($val), 2)); //四隅に余白用のborderを指定
+            }
+
+            @if $breakpoint>=768 {
+              border-width: math.div(pxToRem($val), 2);
+              border-width: min(math.div(pxToVw($val, $pc-comp-width), 2), math.div(pxToRem($val), 2));
+            }
           }
         }
       }

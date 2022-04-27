@@ -1,0 +1,58 @@
+@charset 'UTF-8';
+@use "sass:math";
+@use "../global" as *;
+
+/*
+  Grid
+*/
+
+.l-grid {
+  $this: &;
+  display: grid;
+
+  @each $device, $breakpoint in $breakpoints {
+    @media screen and (min-width: $breakpoint) {
+      @each $size, $val in $gutters {
+        &[data-gap~="#{$device}:#{$size}"] {
+          @if $breakpoint <=767 {
+            gap: min(pxToVw($val), pxToRem($val));
+          }
+
+          @if $breakpoint>=768 {
+            gap: pxToRem($val);
+            gap: min(pxToVw($val, $pc-comp-width), pxToRem($val));
+          }
+        }
+
+        &[data-gap~="#{$device}:#{$size}Row"] {
+          @if $breakpoint <=767 {
+            row-gap: min(pxToVw($val), pxToRem($val));
+          }
+
+          @if $breakpoint>=768 {
+            row-gap: pxToRem($val);
+            row-gap: min(pxToVw($val, $pc-comp-width), pxToRem($val));
+          }
+        }
+
+        &[data-gap~="#{$device}:#{$size}Column"] {
+          @if $breakpoint <=767 {
+            column-gap: min(pxToVw($val), pxToRem($val));
+          }
+
+          @if $breakpoint>=768 {
+            column-gap: pxToRem($val);
+            column-gap: min(pxToVw($val, $pc-comp-width), pxToRem($val));
+          }
+        }
+      }
+
+      @for $i from 1 through $column {
+        &[data-repeat~="#{$device}:#{$i}"] {
+          grid-template-columns: repeat($i, 1fr);
+          grid-template-rows: 1fr;
+        }
+      }
+    }
+  }
+}

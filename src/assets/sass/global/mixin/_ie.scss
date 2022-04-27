@@ -1,10 +1,9 @@
 @charset 'UTF-8';
-@use "../setting"as *;
+@use "../setting" as *;
 
 //  IE
 //--------------------------------------------
 @mixin ie() {
-
   //-------------------------------------------------------------------------------------------------------------
   // -ms-high-contrast: noneのみだハイコントラストモードがオンの時、IEでスタイルが適用されないためactiveも指定
   // 以前は-ms-high-contrast: activeを指定すると、Edgeにもスタイルが適用されるので、IE専用として利用できなかったが、
@@ -13,8 +12,7 @@
   //・https://texst.net/ie11-css-hack-ms-high-contrast-now-useful/ ←2022年12月20日にサイトが終了される
   //・https://koneta.nifty.com/koneta_detail/1141008015352_1.htm
   // -------------------------------------------------------------------------------------------------------------
-  @media (-ms-high-contrast: none),
-  (-ms-high-contrast: active) {
+  @media (-ms-high-contrast: none), (-ms-high-contrast: active) {
     @content;
   }
 }
