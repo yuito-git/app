@@ -14,36 +14,18 @@
     @media screen and (min-width: $breakpoint) {
       @each $size, $val in $gutters {
         &[data-gap~="#{$device}:#{$size}"] {
-          @if $breakpoint <=767 {
-            gap: min(pxToVw($val), pxToRem($val));
-          }
-
-          @if $breakpoint>=768 {
-            gap: pxToRem($val);
-            gap: min(pxToVw($val, $pc-comp-width), pxToRem($val));
-          }
+          gap: pxToRem($val);
+          gap: flexClamp(math.div($val, 2), $val);
         }
 
         &[data-gap~="#{$device}:#{$size}Row"] {
-          @if $breakpoint <=767 {
-            row-gap: min(pxToVw($val), pxToRem($val));
-          }
-
-          @if $breakpoint>=768 {
-            row-gap: pxToRem($val);
-            row-gap: min(pxToVw($val, $pc-comp-width), pxToRem($val));
-          }
+          row-gap: pxToRem($val);
+          row-gap: flexClamp(math.div($val, 2), $val);
         }
 
         &[data-gap~="#{$device}:#{$size}Column"] {
-          @if $breakpoint <=767 {
-            column-gap: min(pxToVw($val), pxToRem($val));
-          }
-
-          @if $breakpoint>=768 {
-            column-gap: pxToRem($val);
-            column-gap: min(pxToVw($val, $pc-comp-width), pxToRem($val));
-          }
+          column-gap: pxToRem($val);
+          column-gap: flexClamp(math.div($val, 2), $val);
         }
       }
 
