@@ -16,8 +16,9 @@ $pc-comp-width: 1400px;
 
 // ブレークポイント
 $breakpoints: (
-  xxs: 0,
-  xs: 360px,
+  min: 0,
+  xxs: 360px,
+  xs: 414px,
   sm: 576px,
   md: 768px,
   lg: 992px,

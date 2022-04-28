@@ -9,29 +9,49 @@
   @each $device, $breakpoint in $breakpoints {
     @media screen and (min-width: $breakpoint) {
       @each $size, $val in $spaces {
-        &[data-space~="#{$device}:#{$size}"] {
+        &[data-y~="#{$device}:#{$size}"] {
           padding: pxToRem($val) 0;
         }
 
-        &[data-space~="#{$device}:#{$size}Top"] {
+        &[data-y~="#{$device}:#{$size}Top"] {
           padding-top: pxToRem($val);
         }
 
-        &[data-space~="#{$device}:#{$size}Bottom"] {
+        &[data-y~="#{$device}:#{$size}Bottom"] {
           padding-bottom: pxToRem($val);
+        }
+
+        &[data-x~="#{$device}:#{$size}"] {
+          padding: 0 pxToRem($val);
+        }
+
+        &[data-x~="#{$device}:#{$size}Right"] {
+          padding-right: pxToRem($val);
+        }
+
+        &[data-x~="#{$device}:#{$size}Left"] {
+          padding-left: pxToRem($val);
         }
       }
 
-      &[data-space~="#{$device}:reset"] {
+      &[data-reset~="#{$device}:all"] {
         padding: 0;
       }
 
-      &[data-space~="#{$device}:resetTop"] {
+      &[data-reset~="#{$device}:top"] {
         padding-top: 0;
       }
 
-      &[data-space~="#{$device}:resetBottom"] {
+      &[data-reset~="#{$device}:right"] {
+        padding-right: 0;
+      }
+
+      &[data-reset~="#{$device}:bottom"] {
         padding-bottom: 0;
+      }
+
+      &[data-reset~="#{$device}:left"] {
+        padding-left: 0;
       }
     }
   }
