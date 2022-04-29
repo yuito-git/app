@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../global" as *;
+@use "../global"as *;
 
 /*
   Grid
@@ -10,9 +10,17 @@
   $this: &;
   display: grid;
 
-  @each $device, $breakpoint in $breakpoints {
+
+  &[data-direction="reverseRow"] {
+    direction: rtl;
+  }
+
+  @each $device,
+  $breakpoint in $breakpoints {
     @media screen and (min-width: $breakpoint) {
-      @each $size, $val in $gutters {
+
+      @each $size,
+      $val in $gutters {
         &[data-gap~="#{$device}:#{$size}"] {
           gap: pxToRem($val);
           gap: flexClamp(math.div($val, 2), $val);
