@@ -1,14 +1,41 @@
 @charset 'UTF-8';
 @use "sass:math";
+@use "sass:meta";
+
+/*
+ * ファイル名: common.css
+ * 内容： Ore no Flexible CSS Grid System.のCSSファイル
+ *
+ * ------- Table Of Contents -------
+ *
+ * 1.0 - Foundation： 初期設定
+ *    1.1 - Reset: ユーザエージェント設定のスタイルをリセット
+ *    1.2 - Base: ベーススタイル
+ *
+ * 2.0 - Layout： 配置
+ *
+ * 3.0 - Object: 繰り返されるビジュアルパターン
+ *    3.1 - Component: 繰り返し利用できる汎用的な部品
+ *
+ *    3.2 - Project: いくつかのComponentと要素によって構成される部品
+ *
+ *    3.3 - Utility: 僅かなスタイル調整のための便利クラス
+ *
+ * 4.0 - Media Queries: 画面幅ごとのスタイル
+ *
+*/
+
 /* =====================================================
   1.0 - Foundation
 ===================================================== */
-@use "foundation";
+//@useを使用すると、「1.0 - Foundation」などのコメント全てが@mediaよりも前に出力されてしまうため
+//参考：https://github.com/sass/dart-sass/issues/1033
+@include meta.load-css("foundation");
 
 /* =====================================================
   2.0 - Layout
 ===================================================== */
-@use "layout";
+@include meta.load-css("layout");
 
 /* =====================================================
   3.0 - Object
@@ -17,14 +44,18 @@
 /*
   3.1 - Component
 -----------------------------------------------------*/
-@use "object/component";
+@include meta.load-css("object/component");
 
 /*
   3.2 - Project
 -----------------------------------------------------*/
-@use "object/project";
+@include meta.load-css("object/project");
 
 /*
   3.2 - Utility
 -----------------------------------------------------*/
-@use "object/utility";
+@include meta.load-css("object/utility");
+
+/* =====================================================
+  4.0 - Media Queries
+===================================================== */

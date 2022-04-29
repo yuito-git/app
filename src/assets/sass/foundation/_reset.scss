@@ -1,9 +1,8 @@
 @charset 'UTF-8';
 @use "sass:math";
 @use "../global" as *;
-
 /*
-  # Global
+  1.1 - Reset
 ---------------------------------------------- */
 /**
  * Default box-sizing
@@ -14,8 +13,6 @@
 ::after {
   //全要素、擬似要素のボックスの計算方法は親要素から継承する
   box-sizing: inherit;
-  //文字のスタイルを親要素から継承する
-  font-style: inherit;
 }
 
 /**
@@ -258,6 +255,10 @@ body {
       will-change: transform;
     }
   }
+}
+
+address {
+  font-style: normal;
 }
 
 /*
