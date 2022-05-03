@@ -160,7 +160,7 @@
 
   @each $device, $breakpoint in $breakpoints {
     @media screen and (min-width: $breakpoint) {
-      @each $size, $val in $gutters {
+      @each $size, $val in $gaps {
         &[data-gutter~="#{$device}:#{$size}"] {
           margin: math.div(
             pxToRem(-$val),
