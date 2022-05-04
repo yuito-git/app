@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../global" as *;
+@use "../global"as *;
 /*
   1.1 - Reset
 ---------------------------------------------- */
@@ -508,6 +508,7 @@ template,
 :focus:not(:focus-visible),
 ::before:focus:not(:focus-visible),
 ::after:focus:not(:focus-visible) {
+  //要素名が省略されている場合は、すべての要素が対象。「＊」を指定した時と同じ意味
   //キーボードのタブ移動でフォーカスが当たった場合に適用される擬似クラスを利用する→https://nullnull.dev/blog/css-focus-visible/
   //マウスクリック時
   outline: none;
@@ -517,6 +518,7 @@ template,
  * Prettier ignore
  */
 @media (prefers-reduced-motion: reduce) {
+
   //OSの「視差効果」設定が有効の時
   //【NG例】
   //*,
