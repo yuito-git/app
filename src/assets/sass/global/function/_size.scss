@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../setting" as *;
+@use "../setting"as *;
 
 //  Size
 //--------------------------------------------
@@ -48,12 +48,14 @@
   // a -> 傾き(変化の割合) = (垂直の増加量) / (水平方向の増加量);
   // b -> 切片(y軸との交点) = 最小のサイズ - 傾き * 最小の横幅;
   // y = a * 100vw + b
+  // 参考：https://sushirice.pro/css-store/297/
+  // 正直まだよく分かってない
   // ===========================================================
   //垂直方向の増加量
   $verticalAmount: $maxY - $minY;
   //水平方向の増加量
   $horizontalAmount: $maxX - $minX;
-  //傾き(小数点3けたに制御)
+  //傾き(小数点以下を3桁まで)、math.round()は小数点以下を四捨五入する関数
   $tilt: math.div(math.round(math.div($verticalAmount, $horizontalAmount) * 1000), 1000);
   //切片
   $intercept: pxToRem($minY - $tilt * $minX);
