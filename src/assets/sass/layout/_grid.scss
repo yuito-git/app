@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../global" as *;
+@use "../global"as *;
 
 /*
 Grid
@@ -15,11 +15,14 @@ Grid
   &[data-mode="grid"] {
     display: grid;
 
-    @each $device, $breakpoint in $breakpoints {
+    @each $device,
+    $breakpoint in $breakpoints {
       @media screen and (min-width: $breakpoint) {
+
         // Gap
         // ----------------------------
-        @each $size, $val in $gaps {
+        @each $size,
+        $val in $gaps {
           &[data-gap~="#{$device}:#{$size}"] {
             gap: pxToRem($val);
             gap: flexClamp(math.div($val, 2), $val);
@@ -78,23 +81,24 @@ Grid
     &[data-gap] {
       width: auto;
 
-      & > #{$this}__item {
+      &>#{$this}__item {
         border: solid transparent;
         background-clip: padding-box;
       }
     }
 
-    @each $device, $breakpoint in $breakpoints {
+    @each $device,
+    $breakpoint in $breakpoints {
       @media screen and (min-width: $breakpoint) {
-        @each $size, $val in $gaps {
+
+        @each $size,
+        $val in $gaps {
           &[data-gap~="#{$device}:#{$size}"] {
-            margin: math.div(
-              pxToRem(-$val),
-              2
-            ); //余計なborderをネガティブマージンで消す。2で割るのは、隣り合う要素の余白1つ分を消すため
+            margin: math.div(pxToRem(-$val),
+                2); //余計なborderをネガティブマージンで消す。2で割るのは、隣り合う要素の余白1つ分を消すため
             margin: max(math.div(pxToVw(-$val), 2), math.div(pxToRem(-$val), 2));
 
-            & > #{$this}__item {
+            &>#{$this}__item {
               border-width: math.div(pxToRem($val), 2);
               border-width: min(math.div(pxToVw($val), 2), math.div(pxToRem($val), 2)); //四隅に余白用のborderを指定
             }
@@ -104,7 +108,7 @@ Grid
         // グリッド何個分の領域を確保するか
         // ----------------------------
 
-        & > #{$this}__item {
+        &>#{$this}__item {
           @for $i from 1 through $column {
             &[data-cols~="#{$device}:#{$i}"] {
               width: math.percentage(math.div($i, $column));
@@ -128,33 +132,36 @@ Grid
 
   // Alignment(Container)
   // ----------------------------
-  @each $device, $breakpoint in $breakpoints {
-    &[data-align~="#{$device}:left"] {
-      justify-content: flex-start;
-    }
+  @each $device,
+  $breakpoint in $breakpoints {
+    @media screen and (min-width: $breakpoint) {
+      &[data-align~="#{$device}:left"] {
+        justify-content: flex-start;
+      }
 
-    &[data-align~="#{$device}:center"] {
-      justify-content: center;
-    }
+      &[data-align~="#{$device}:center"] {
+        justify-content: center;
+      }
 
-    &[data-align~="#{$device}:right"] {
-      justify-content: flex-end;
-    }
+      &[data-align~="#{$device}:right"] {
+        justify-content: flex-end;
+      }
 
-    &[data-align~="#{$device}:justify"] {
-      justify-content: space-between;
-    }
+      &[data-align~="#{$device}:justify"] {
+        justify-content: space-between;
+      }
 
-    &[data-align~="#{$device}:top"] {
-      align-items: flex-start;
-    }
+      &[data-align~="#{$device}:top"] {
+        align-items: flex-start;
+      }
 
-    &[data-align~="#{$device}:middle"] {
-      align-items: center;
-    }
+      &[data-align~="#{$device}:middle"] {
+        align-items: center;
+      }
 
-    &[data-align~="#{$device}:bottom"] {
-      align-items: flex-end;
+      &[data-align~="#{$device}:bottom"] {
+        align-items: flex-end;
+      }
     }
   }
 
@@ -168,44 +175,49 @@ Grid
     display: flex;
     flex-direction: column;
 
-    @each $device, $breakpoint in $breakpoints {
-      // Alignment(Item)
-      // ----------------------------
-      &[data-align~="#{$device}:left"] {
-        justify-self: flex-start;
-      }
+    @each $device,
+    $breakpoint in $breakpoints {
+      @media screen and (min-width: $breakpoint) {
 
-      &[data-align~="#{$device}:center"] {
-        justify-self: center;
-      }
-
-      &[data-align~="#{$device}:right"] {
-        justify-self: flex-end;
-      }
-
-      &[data-align~="#{$device}:top"] {
-        align-self: flex-start;
-      }
-
-      &[data-align~="#{$device}:middle"] {
-        align-self: center;
-      }
-
-      &[data-align~="#{$device}:bottom"] {
-        align-self: flex-end;
-      }
-
-      @for $i from 0 through 3 {
-        // Order
+        // Alignment(Item)
         // ----------------------------
-        &[data-order~="#{$device}:#{$i}"] {
-          order: $i;
+        &[data-align~="#{$device}:left"] {
+          justify-self: flex-start;
         }
 
-        // Grow
-        // ----------------------------
-        &[data-grow~="#{$device}:#{$i}"] {
-          flex-grow: $i;
+        &[data-align~="#{$device}:center"] {
+          justify-self: center;
+        }
+
+        &[data-align~="#{$device}:right"] {
+          justify-self: flex-end;
+        }
+
+        &[data-align~="#{$device}:top"] {
+          align-self: flex-start;
+        }
+
+        &[data-align~="#{$device}:middle"] {
+          align-self: center;
+        }
+
+        &[data-align~="#{$device}:bottom"] {
+          align-self: flex-end;
+        }
+
+        @for $i from 0 through 3 {
+
+          // Order
+          // ----------------------------
+          &[data-order~="#{$device}:#{$i}"] {
+            order: $i;
+          }
+
+          // Grow
+          // ----------------------------
+          &[data-grow~="#{$device}:#{$i}"] {
+            flex-grow: $i;
+          }
         }
       }
     }
