@@ -91,8 +91,7 @@ Grid
         @each $size,
         $val in $gaps {
           &[data-gap~="#{$device}:#{$size}"] {
-            margin: math.div(pxToRem(-$val),
-                2); //余計なborderをネガティブマージンで消す。2で割るのは、隣り合う要素の余白1つ分を消すため
+            //余計なborderをネガティブマージンで消す。2で割るのは、隣り合う要素の余白1つ分を消すため
             margin: math.div(pxToRem(-$val), 2);
 
             &>#{$this}__item {
