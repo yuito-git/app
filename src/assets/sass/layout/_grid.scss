@@ -25,17 +25,14 @@ Grid
         $val in $gaps {
           &[data-gap~="#{$device}:#{$size}"] {
             gap: pxToRem($val);
-            gap: flexClamp(math.div($val, 2), $val);
           }
 
           &[data-gap~="#{$device}:#{$size}Row"] {
             row-gap: pxToRem($val);
-            row-gap: flexClamp(math.div($val, 2), $val);
           }
 
           &[data-gap~="#{$device}:#{$size}Column"] {
             column-gap: pxToRem($val);
-            column-gap: flexClamp(math.div($val, 2), $val);
           }
         }
 
@@ -96,11 +93,10 @@ Grid
           &[data-gap~="#{$device}:#{$size}"] {
             margin: math.div(pxToRem(-$val),
                 2); //余計なborderをネガティブマージンで消す。2で割るのは、隣り合う要素の余白1つ分を消すため
-            margin: max(math.div(pxToVw(-$val), 2), math.div(pxToRem(-$val), 2));
+            margin: math.div(pxToRem(-$val), 2);
 
             &>#{$this}__item {
-              border-width: math.div(pxToRem($val), 2);
-              border-width: min(math.div(pxToVw($val), 2), math.div(pxToRem($val), 2)); //四隅に余白用のborderを指定
+              border-width: math.div(pxToRem($val), 2); //四隅に余白用のborderを指定
             }
           }
         }
@@ -121,6 +117,15 @@ Grid
 
           &[data-cols~="#{$device}:Auto"] {
             width: auto;
+          }
+
+          @for $i from 0 through 3 {
+
+            // Grow
+            // ----------------------------
+            &[data-grow~="#{$device}:#{$i}"] {
+              flex-grow: $i;
+            }
           }
         }
       }
@@ -213,11 +218,7 @@ Grid
             order: $i;
           }
 
-          // Grow
-          // ----------------------------
-          &[data-grow~="#{$device}:#{$i}"] {
-            flex-grow: $i;
-          }
+
         }
       }
     }
