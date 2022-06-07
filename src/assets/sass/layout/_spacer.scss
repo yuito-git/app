@@ -7,7 +7,7 @@
 -----------------------------------------------------*/
 .l-spacer {
   @each $device, $breakpoint in $breakpoints {
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: #{math.div($breakpoint,16px) * 1rem}) {
       @each $size, $val in $spaces {
         &[data-y~="#{$device}:#{$size}"] {
           padding: pxToRem($val) 0;
@@ -60,8 +60,29 @@
     border-bottom: 1px solid $primary-border-color;
   }
 
-  &.-bgGrey {
-    background-color: #ddd;
+  &[data-bg~="min:dark"] {
+    background-color: $main-color;
+  }
+
+  &[data-bg~="min:thinGrey"] {
+    background-color: #fafafa;
+  }
+
+  &[data-bg~="lg:lightGreyHalf"] {
+    @include mq(lg) {
+      position: relative;
+
+      &:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50%;
+        background-color: #f0f0f0;
+      }
+    }
   }
 
   &.-bgMain {

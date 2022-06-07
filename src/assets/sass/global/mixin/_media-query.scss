@@ -1,6 +1,7 @@
 @charset 'UTF-8';
 @use "../setting" as *;
 @use "sass:map";
+@use "sass:math";
 
 //  Media Queries メディアクエリ
 //--------------------------------------------
@@ -11,14 +12,14 @@
     //指定したキーが存在しているかどうか
     @if ($notOperator==true) {
       //not演算子で指定するとき
-      @media not all and (min-width: #{map.get($breakpoints,$breakpoint)}) {
+      @media not all and (min-width: #{math.div(map.get($breakpoints,$breakpoint),16px) * 1rem}) {
         //$breakpointの幅を含まずそれより小さい幅の時適用
         //【例】$breakpoint=1024pxの時、1024pxを含まずそれより小さい幅に対して適用,1023.999...pxから適用
         //【参考】https://zenn.dev/tak_dcxi/articles/690caf6e9c4e26
         @content;
       }
     } @else if($notOperator==false) {
-      @media (min-width: #{map.get($breakpoints, $breakpoint)}) {
+      @media screen and (min-width: #{math.div(map.get($breakpoints, $breakpoint),16px) *1rem  }) {
         //$breakpoint以上の幅の時
         @content;
       }
