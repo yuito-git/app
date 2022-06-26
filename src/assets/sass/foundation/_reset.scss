@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../global" as *;
+@use "../global"as *;
 /*
   1.1 - Reset
 ---------------------------------------------- */
@@ -236,6 +236,15 @@ body {
     height: 100%;
     animation: fadeOut 1s $easing 3s 1 both;
     background-color: #fff;
+
+    @keyframes fadeOut {
+      100% {
+        visibility: hidden;
+        z-index: -100;
+        transform: translateX(-100%) scaleX(0);
+        pointer-events: none;
+      }
+    }
 
     .is-useJs & {
       //JS有効環境の時アニメーションさせない
@@ -518,6 +527,7 @@ template,
  * Prettier ignore
  */
 @media (prefers-reduced-motion: reduce) {
+
   //OSの「視差効果」設定が有効の時
   //【NG例】
   //*,
