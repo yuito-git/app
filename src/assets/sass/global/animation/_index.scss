@@ -1,8 +1,6 @@
 @charset 'UTF-8';
 //============================================
-//  Settings
+//  Animation
 //============================================
-@forward "layout";
-@forward "color";
-@forward "font";
-@forward "easing";
+
+@forward "fade-in";
