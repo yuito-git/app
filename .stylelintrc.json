@@ -18,6 +18,6 @@
     "shorthand-property-no-redundant-values": true,
     "value-keyword-case": "lower",
     "property-case": "lower",
-    "scss/operator-no-unspaced": false
+    "scss/operator-no-unspaced": null
   }
 }
