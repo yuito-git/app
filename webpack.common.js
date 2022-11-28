@@ -8,6 +8,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 //個々のファイルやディレクトリ全体をコピーするたのプラグイン
 const CopyPlugin = require("copy-webpack-plugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
+const { htmlWebpackPluginTemplateCustomizer } = require("template-ejs-loader");
 
 const StyleLintPlugin = require("stylelint-webpack-plugin");
 const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
@@ -23,6 +24,7 @@ const dir = {
 
 const settings = {
   pug: true,
+  ejs: false,
   sass: true,
   ts: false,
   php: false,
@@ -60,6 +62,27 @@ if (settings.pug) {
       new HtmlWebpackPlugin({
         filename: `${fileName}`,//出力ファイル名
         template: document,//コンパイル対象ファイル
+        inject: false,//バンドルしたjsファイルを読み込むscriptタグを自動出力しない。html・pugファイル側でscriptタグを記述する。
+        minify: false,//htmlの圧縮しない
+      })
+    );
+  });
+}
+if (settings.ejs) {
+  const documents = globule.find([`./${dir.src}/html/**/*.html`, `./${dir.src}/ejs/**/*.ejs`],
+    { ignore: [`./${dir.src}/html/**/_*.html`, `./${dir.src}/ejs/**/_*.ejs`] });
+
+  documents.forEach((document) => {
+    const fileName = document
+      .replace(`./${dir.src}/ejs/`, "")
+      .replace(`./${dir.src}/html/`, "")
+      .replace(".ejs", ".html");
+    templates.push(
+      new HtmlWebpackPlugin({
+        filename: `${fileName}`,//出力ファイル名
+        template: htmlWebpackPluginTemplateCustomizer({
+          templatePath: document
+        }),//コンパイル対象ファイル
         inject: false,//バンドルしたjsファイルを読み込むscriptタグを自動出力しない。html・pugファイル側でscriptタグを記述する。
         minify: false,//htmlの圧縮しない
       })
@@ -165,7 +188,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(pug|html)$/,
+        test: /\.(pug|html|ejs)$/,
         use: [
           {
             loader: "html-loader",
@@ -187,6 +210,18 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.ejs$/i,
+        enforce: "pre",
+        use: [
+          {
+            loader: "template-ejs-loader",
+            options: {
+              pretty: true,
+            }
+          }
+        ]
       },
     ],
   },
